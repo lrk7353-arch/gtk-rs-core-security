@@ -76,7 +76,6 @@ pub trait DBusInterfaceSkeletonExt: IsA<DBusInterfaceSkeleton> + 'static {
 
     #[doc(alias = "g_dbus_interface_skeleton_get_flags")]
     #[doc(alias = "get_flags")]
-    #[doc(alias = "g-flags")]
     fn flags(&self) -> DBusInterfaceSkeletonFlags {
         unsafe {
             from_glib(ffi::g_dbus_interface_skeleton_get_flags(
@@ -132,7 +131,6 @@ pub trait DBusInterfaceSkeletonExt: IsA<DBusInterfaceSkeleton> + 'static {
     }
 
     #[doc(alias = "g_dbus_interface_skeleton_set_flags")]
-    #[doc(alias = "g-flags")]
     fn set_flags(&self, flags: DBusInterfaceSkeletonFlags) {
         unsafe {
             ffi::g_dbus_interface_skeleton_set_flags(
@@ -157,6 +155,16 @@ pub trait DBusInterfaceSkeletonExt: IsA<DBusInterfaceSkeleton> + 'static {
                 connection.to_glib_none().0,
             );
         }
+    }
+
+    #[doc(alias = "g-flags")]
+    fn g_flags(&self) -> DBusInterfaceSkeletonFlags {
+        ObjectExt::property(self.as_ref(), "g-flags")
+    }
+
+    #[doc(alias = "g-flags")]
+    fn set_g_flags(&self, g_flags: DBusInterfaceSkeletonFlags) {
+        ObjectExt::set_property(self.as_ref(), "g-flags", g_flags)
     }
 
     #[doc(alias = "g-authorize-method")]

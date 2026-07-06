@@ -34,7 +34,7 @@ pub fn base64_decode(text: &str) -> Vec<u8> {
 //}
 
 //#[doc(alias = "g_base64_decode_step")]
-//pub fn base64_decode_step(in_: &[&str], out: Vec<u8>, state: &mut i32, save: &mut u32) -> usize {
+//pub fn base64_decode_step(in_: &[u8], out: Vec<u8>, state: &mut i32, save: &mut u32) -> usize {
 //    unsafe { TODO: call ffi:g_base64_decode_step() }
 //}
 
@@ -634,6 +634,11 @@ pub fn set_application_name(application_name: &str) {
         ffi::g_set_application_name(application_name.to_glib_none().0);
     }
 }
+
+//#[doc(alias = "g_set_user_dirs")]
+//pub fn set_user_dirs(first_dir_type: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
+//    unsafe { TODO: call ffi:g_set_user_dirs() }
+//}
 
 #[doc(alias = "g_setenv")]
 pub unsafe fn setenv(

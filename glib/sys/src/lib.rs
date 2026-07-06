@@ -673,10 +673,7 @@ pub const G_USER_DIRECTORY_PICTURES: GUserDirectory = 4;
 pub const G_USER_DIRECTORY_PUBLIC_SHARE: GUserDirectory = 5;
 pub const G_USER_DIRECTORY_TEMPLATES: GUserDirectory = 6;
 pub const G_USER_DIRECTORY_VIDEOS: GUserDirectory = 7;
-#[cfg(feature = "v2_90")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v2_90")))]
-pub const G_USER_DIRECTORY_PROJECTS: GUserDirectory = 8;
-pub const G_USER_N_DIRECTORIES: GUserDirectory = 9;
+pub const G_USER_N_DIRECTORIES: GUserDirectory = 8;
 
 pub type GVariantClass = c_int;
 pub const G_VARIANT_CLASS_BOOLEAN: GVariantClass = 98;
@@ -4221,18 +4218,6 @@ unsafe extern "C" {
         error: *mut *mut GError,
     ) -> gboolean;
     pub fn g_markup_parse_context_free(context: *mut GMarkupParseContext);
-    #[cfg(feature = "v2_90")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v2_90")))]
-    pub fn g_markup_parse_context_get_attribute_position(
-        context: *mut GMarkupParseContext,
-        attr: c_uint,
-        start_lines: *mut size_t,
-        start_chars: *mut size_t,
-        start_offset: *mut size_t,
-        end_lines: *mut size_t,
-        end_chars: *mut size_t,
-        end_offset: *mut size_t,
-    );
     pub fn g_markup_parse_context_get_element(context: *mut GMarkupParseContext) -> *const c_char;
     pub fn g_markup_parse_context_get_element_stack(
         context: *mut GMarkupParseContext,
@@ -6342,7 +6327,7 @@ unsafe extern "C" {
     pub fn g_base64_decode(text: *const c_char, out_len: *mut size_t) -> *mut u8;
     pub fn g_base64_decode_inplace(text: *mut u8, out_len: *mut size_t) -> *mut u8;
     pub fn g_base64_decode_step(
-        in_: *const c_char,
+        in_: *const u8,
         len: size_t,
         out: *mut u8,
         state: *mut c_int,
@@ -7034,6 +7019,7 @@ unsafe extern "C" {
     pub fn g_set_prgname(prgname: *const c_char);
     pub fn g_set_print_handler(func: GPrintFunc) -> GPrintFunc;
     pub fn g_set_printerr_handler(func: GPrintFunc) -> GPrintFunc;
+    pub fn g_set_user_dirs(first_dir_type: *const c_char, ...);
     pub fn g_setenv(variable: *const c_char, value: *const c_char, overwrite: gboolean)
     -> gboolean;
     pub fn g_shell_error_quark() -> GQuark;
